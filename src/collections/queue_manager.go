@@ -1,7 +1,6 @@
-package queues
+package collections
 
 import (
-	"collections"
 	"time"
 )
 
@@ -11,7 +10,7 @@ type record struct {
 }
 
 type QueuesManager struct {
-	Queues map[string]*collections.Queue
+	Queues map[string]*Queue
 }
 
 func (q *QueuesManager) Exists(name string) bool {
@@ -24,7 +23,7 @@ func (q *QueuesManager) Push(name string, data []byte) {
 	if q.Exists(name) {
 		q.Queues[name].Add(newItem)
 	} else {
-		q.Queues[name] = collections.New()
+		q.Queues[name] = NewQueue()
 		q.Queues[name].Add(newItem)
 	}
 }
@@ -44,6 +43,6 @@ func (q *QueuesManager) Pop(name string) []byte {
 
 func NewQueuesManager() *QueuesManager {
 	qm := new(QueuesManager)
-	qm.Queues = make(map[string]*collections.Queue)
+	qm.Queues = make(map[string]*Queue)
 	return qm
 }

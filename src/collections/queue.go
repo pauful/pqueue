@@ -10,7 +10,7 @@ type Queue struct {
 	len         int
 }
 
-func New() *Queue {
+func NewQueue() *Queue {
 	return &Queue{len: 0}
 }
 

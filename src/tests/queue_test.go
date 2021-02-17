@@ -1,4 +1,4 @@
-package queue_tests
+package tests
 
 import (
 	"collections"
@@ -12,25 +12,25 @@ func checkQueueLen(t *testing.T, q *collections.Queue, expected int) {
 }
 
 func TestQueue_New(t *testing.T) {
-	queue := collections.New()
+	queue := collections.NewQueue()
 	if queue == nil {
 		t.Errorf("Queue New returns a nil value")
 	}
 }
 
 func TestQueue_New_Empty(t *testing.T) {
-	queue := collections.New()
+	queue := collections.NewQueue()
 	checkQueueLen(t, queue, 0)
 }
 
 func TestQueue_Add(t *testing.T) {
-	queue := collections.New()
+	queue := collections.NewQueue()
 	queue.Add(1)
 	checkQueueLen(t, queue, 1)
 }
 
 func TestQueue_RemoveReturnsLastElement(t *testing.T) {
-	queue := collections.New()
+	queue := collections.NewQueue()
 	queue.Add(1)
 	lastElement := queue.Remove()
 	if lastElement != 1 {
@@ -40,7 +40,7 @@ func TestQueue_RemoveReturnsLastElement(t *testing.T) {
 }
 
 func TestQueue_RemoveEmptyListResultsNil(t *testing.T) {
-	queue := collections.New()
+	queue := collections.NewQueue()
 	lastElement := queue.Remove()
 	if lastElement != nil {
 		t.Errorf("Element value '%v' not expectd '%v'", lastElement, nil)
