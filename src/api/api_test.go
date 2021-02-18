@@ -1,7 +1,6 @@
-package tests
+package api
 
 import (
-	"api"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -9,10 +8,10 @@ import (
 	"testing"
 )
 
-var a api.App
+var a App
 
 func TestMain(m *testing.M) {
-	a = api.App{}
+	a = App{}
 	a.Initialise()
 	code := m.Run()
 
@@ -32,12 +31,17 @@ func checkResponseCode(t *testing.T, expected, actual int) {
 	}
 }
 
-func TestInsertRetrieve(t *testing.T) {
+func TestInsertOneInt(t *testing.T) {
 	r := strings.NewReader("my request")
 	req, _ := http.NewRequest("POST", "/queue/pau", r)
 	response := executeRequest(req)
 
 	checkResponseCode(t, http.StatusOK, response.Code)
+
+	length := a.QueuesMananger.Len("pau")
+	if length != 1 {
+		t.Errorf("Expected queue leng is 1 and not %d", length)
+	}
 
 	req, _ = http.NewRequest("GET", "/queue/pau", nil)
 	response = executeRequest(req)
