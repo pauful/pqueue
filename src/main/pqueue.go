@@ -1,7 +1,7 @@
 package main
 
 import (
-	"api"
+	"github.com/pauful/pqueue/src/api"
 )
 
 // main starts http server

@@ -1,12 +1,11 @@
 package api
 
 import (
-	"collections"
+	"github.com/pauful/pqueue/src/collections"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
-
 	"github.com/gorilla/mux"
 )
 
